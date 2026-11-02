@@ -1,0 +1,12 @@
+# Java compilado
+*.class
+build/
+dist/
+target/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

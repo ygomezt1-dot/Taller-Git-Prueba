@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GrafoJavaNetBeans" default="run" basedir=".">
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="main.class" value="grafo.GrafoOperaciones"/>
+    <property name="run.class" value="${main.class}"/>
+
+    <target name="clean" description="Borra los archivos compilados">
+        <delete dir="${build.dir}"/>
+        <delete dir="dist"/>
+    </target>
+
+    <target name="compile" description="Compila el programa">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8" includeantruntime="false" source="17" target="17">
+            <include name="**/*.java"/>
+        </javac>
+    </target>
+
+    <target name="compile-single" depends="compile" description="Compila los archivos Java del proyecto"/>
+
+    <target name="jar" depends="compile" description="Genera el archivo JAR">
+        <mkdir dir="dist"/>
+        <jar destfile="dist/GrafoJavaNetBeans.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="compile" description="Ejecuta el programa">
+        <java classname="${main.class}" classpath="${classes.dir}" fork="true"/>
+    </target>
+
+    <target name="run-single" depends="compile" description="Ejecuta la clase seleccionada en NetBeans">
+        <java classname="${run.class}" classpath="${classes.dir}" fork="true"/>
+    </target>
+
+    <target name="debug" depends="compile" description="Compila el proyecto para depuracion"/>
+    <target name="debug-single" depends="compile" description="Compila la clase seleccionada para depuracion"/>
+</project>
